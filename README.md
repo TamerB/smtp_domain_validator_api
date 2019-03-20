@@ -9,7 +9,7 @@ Note: At most 5 API requests per second are allowed
 
 * Dependencies: Run ```bundle install```
 
-* Configuration: You need to configure ```API_ACCESS_KEY``` as credential value, or add it to ```credentials.yml.enc``` (e.g. using ```EDITOR=vi bin/rails credentials:edit```).
+* Configuration: You need to add ```API_ACCESS_KEY``` to ```.env```file.
 
 * Database:
   - This API uses PostgreSQL. So make sure it is installed and with your username as a role
