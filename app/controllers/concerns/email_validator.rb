@@ -3,7 +3,7 @@ module EmailValidator
   require 'json'
 
   def validate_email
-    uri = URI("http://apilayer.net/api/check?" + "access_key=" + ENV['API_ACCESS_KEY'] + "&email=" + params[:email] + "&smtp=1&fomat=1")
+    uri = URI("http://apilayer.net/api/check?" + "access_key=" + Rails.application.credentials[:API_ACCESS_KEY] + "&email=" + params[:email] + "&smtp=1&fomat=1")
     req = Net::HTTP::Get.new(uri)
 
     response = Net::HTTP.start(uri.hostname, uri.port) {|http|
