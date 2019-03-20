@@ -15,7 +15,7 @@ class ValidationRequestsController < ApplicationController
     response = {:message => {message: "Validation Request denied: At most 5 api requests per second are allowed!"}, :code => :method_not_allowed}
 
     if current_second_requests_number < 5
-      response = params[:email] ? validate_email() : {:message => {message: "Bad Request... No email to validate!"}, :code => :bad_request}
+      response =  email_exists() ? validate_email() : {:message => {message: "Bad Request... No email to validate!"}, :code => :bad_request}
     end
 
     json_response(response[:message], response[:code])
@@ -26,7 +26,11 @@ class ValidationRequestsController < ApplicationController
   #  json_response(@request)
   #end
 
-  #private
+  private
+
+  def email_exists
+    return (params[:email] != nil and !params[:email].blank?)
+  end
 
   #def set_request
   #  @request = ValidationRequest.find(params[:id])
